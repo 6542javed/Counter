@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Click Counter</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    
+    #counter {
+      font-size: 48px;
+      margin-top: 50px;
+    }
+    
+    #clicksPerMinute {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+    
+    button {
+      font-size: 24px;
+      margin-top: 20px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click Counter</h1>
+  <div id="counter">0</div>
+  <div id="clicksPerMinute">0 challan per minute</div>
+  <button onclick="incrementCounter()">Click Me!</button>
+
+  <script>
+    let count = 0;
+    let startTime = Date.now();
+
+    function incrementCounter() {
+      count++;
+      document.getElementById('counter').textContent = count;
+      updateClicksPerMinute();
+    }
+
+    function updateClicksPerMinute() {
+      const elapsedTime = (Date.now() - startTime) / 1000; // in seconds
+      const clicksPerMinute = (count / elapsedTime) * 60;
+      document.getElementById('clicksPerMinute').textContent = clicksPerMinute.toFixed(2) + ' clicks per minute';
+    }
+
+    setInterval(updateClicksPerMinute, 1000); // Update clicks per minute every second
+  </script>
+</body>
+</html>
